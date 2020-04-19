@@ -8,6 +8,8 @@ const User = require('../models/user');
 exports.register = (req, res) => {
     const { name, email, password, confirm_password } = req.body;
 
+    console.log(req.body);
+
     //Simple validation
     if(!name || !email || !password || !confirm_password) {
         return res.status(400).json({ msg: 'Please enter all the fields '});

@@ -15,6 +15,10 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
+    auth_user: {
+        type: String,
+        required: true
+    },
     register_date: {
         type: Date,
         default: Date.now

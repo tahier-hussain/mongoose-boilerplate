@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb://localhost:27017/mongoose-boilerplate-db",
+    "mongoURI": "mongodb://localhost:27017/medium-crud-app",
     "jwtSecret": "blog_secret_key"
 }

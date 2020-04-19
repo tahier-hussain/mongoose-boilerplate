@@ -4,19 +4,23 @@ const Post = require('../models/post');
 
 exports.create =  (req, res) => {
 
-    const newPost = new Post({
-        title: req.body.title,
-        post: req.body.post,
-        auth_id: req.user.id
-    })
+    User.findById(req.user.id)
+        .select('-password')
+        .then(user => {
+            const newPost = new Post({
+                title: req.body.title,
+                post: req.body.post,
+                auth_id: req.user.id,
+                auth_user: user.name
+            })
 
-    newPost
-        .save()
-        .then(data => res.json(data))
-        .catch(() => res.status(400).json({
-            msg: 'Something went wrong'
-        }))
-
+            newPost
+                .save()
+                .then(data => res.json(data))
+                .catch(() => res.status(400).json({
+                    msg: 'Something went wrong'
+                }))
+        })
 }
 
 exports.get = (req, res) => {

@@ -1,3 +1,3 @@
 module.exports = {
-    mongoURI: 'mongodb://localhost:27017/mongoose-boilerplate-db'
+    mongoURI: 'mongodb://localhost:27017/medium-crud-app'
 }
