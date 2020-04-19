@@ -12,20 +12,28 @@ exports.register = (req, res) => {
 
     //Simple validation
     if(!name || !email || !password || !confirm_password) {
-        return res.status(400).json({ msg: 'Please enter all the fields '});
+        return res.json({ 
+            status: 400,
+            msg: 'Please enter all the fields '});
     }
     //Check for existing user
     User
         .findOne({ email })
         .then(user => {
-            if(user) return res.status(400).json({ msg: 'User already exists '});
+            if(user) return res.json({ 
+                status: 400,
+                msg: 'User already exists '});
 
             if(password != confirm_password) {
-                return res.status(400).json({ msg: 'Password Didn\'t match'})
+                return res.json({ 
+                    status: 400,
+                    msg: 'Password Didn\'t match'})
             }
 
             if(password.length < 8) {
-                return res.status(400).json({ msg : 'Password should be atleast 8 characters'})
+                return res.json({ 
+                    status: 400,
+                    msg : 'Password should be atleast 8 characters'})
             }
 
             var number = 0;
@@ -49,7 +57,9 @@ exports.register = (req, res) => {
             }
 
             if(number != 1 || low_alph != 1 || up_alph != 1 || spl_char != 1) {
-                return res.status(400).json({ msg : 'Password not efficient' })
+                return res.json({ 
+                    status: 400,
+                    msg : 'Password not efficient' })
             }
 
             const newUser = new User({
@@ -72,6 +82,7 @@ exports.register = (req, res) => {
                                 (err, token) => {
                                     if(err) throw err;
                                     res.json({
+                                        status: 200,
                                         token,
                                         users: {
                                             id: user.id,
