@@ -18,7 +18,7 @@ mongoose
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err));
 
-//Use Routes
+//Routes
 app.use('/api/register', require('./routes/api/register'));
 app.use('/api/login', require('./routes/api/login'));
 app.use('/api/auth', require('./routes/api/auth-user'));
